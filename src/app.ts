@@ -13,5 +13,3 @@ app.listen(3000);
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     res.status(500).json({ message : err.message});
 });
-
-console.log("Hello");

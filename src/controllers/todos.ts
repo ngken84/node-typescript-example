@@ -27,3 +27,15 @@ export const patchTodo: RequestHandler<{id: string}> = (req, res, next) => {
         res.status(201).json({message: 'Todo updated successfully.', updatedTodo: TODOS[todoIndex]})  
     }
 }
+
+export const deleteTodo: RequestHandler<{id: string}> = (req, res, next) => {
+    const id = req.params.id;
+    const todoIndex = TODOS.findIndex(todo => todo.id === id);
+    if(todoIndex === -1) {
+        res.status(404).json({message: 'Unable to find corresponding todo item'});
+    } else {
+        TODOS.splice(todoIndex, 1);
+        res.status(201).json({message: 'Todo deleted successfully.', newTodos: TODOS})  
+    }
+}
+
